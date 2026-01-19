@@ -20,6 +20,8 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .article {
@@ -36,6 +38,47 @@ body {
   font-size: clamp(2.1rem, 3vw, 2.8rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
+}
+
+.page-pagination {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1230px;
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0 56px;
+  width: calc(100% - 112px);
+  z-index: 2;
+}
+
+.page-pagination__btn {
+  border: 1px solid #e4e7ec;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 0 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 36px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-pagination__btn:hover {
+  background: #f8fafc;
+}
+
+.page-pagination__btn--active {
+  background: #1d4ed8;
+  color: #ffffff;
+  border-color: #1d4ed8;
 }
 
 .intro {
@@ -232,6 +275,52 @@ body {
   }
 }
 
+@media (max-width: 600px) {
+  .casino-list__stack {
+    gap: 12px;
+  }
+
+  .casino-row {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "score"
+      "bonus"
+      "cta";
+  }
+
+  .casino-row__rank,
+  .casino-row__logo {
+    display: none;
+  }
+
+  .casino-row__name {
+    grid-area: name;
+  }
+
+  .casino-row__score {
+    grid-area: score;
+  }
+
+  .casino-row__bonus {
+    grid-area: bonus;
+  }
+
+  .casino-row__cta {
+    grid-area: cta;
+  }
+}
+
+@media (max-width: 900px) {
+  .casino-row__bonus {
+    font-size: 0.95rem;
+  }
+
+  .casino-row__score {
+    min-width: 0;
+  }
+}
+
 .testing-block {
   margin-top: 56px;
   display: grid;
@@ -244,8 +333,12 @@ body {
 }
 
 .testing-block__head p {
-  margin: 0;
+  margin: 0 0 12px;
   color: var(--muted);
+}
+
+.testing-block__head p:last-child {
+  margin-bottom: 0;
 }
 
 .testing-block__label {
@@ -467,6 +560,78 @@ body {
   }
 }
 
+@media (max-width: 720px) {
+  .table-wrap {
+    overflow-x: visible;
+  }
+}
+
+@media (max-width: 720px) {
+  .table-wrap {
+    border-radius: 16px;
+    padding: 8px;
+    background: transparent;
+  }
+
+  .comparison-table,
+  .comparison-table thead,
+  .comparison-table tbody,
+  .comparison-table th,
+  .comparison-table td,
+  .comparison-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .comparison-table thead {
+    display: none;
+  }
+
+  .comparison-table tbody tr {
+    border: 1px solid #e4e7ec;
+    border-radius: 14px;
+    padding: 12px 14px;
+    background: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  .comparison-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .comparison-table td {
+    border: none;
+    padding: 8px 0;
+  }
+
+  .comparison-table td:first-child {
+    width: auto;
+    background: #f8fafc;
+    font-weight: 700;
+    color: #0f172a;
+    padding: 8px 10px;
+    border-radius: 10px;
+  }
+
+  .comparison-table td:last-child {
+    padding-bottom: 0;
+  }
+
+  .comparison-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #98a2b3;
+    margin-bottom: 6px;
+  }
+
+  .comparison-table td:first-child::before {
+    content: none;
+  }
+}
+
 .limits-block {
   margin-top: 56px;
   display: grid;
@@ -646,6 +811,205 @@ body {
   }
 }
 
+.brand-reviews {
+  margin-top: 56px;
+  display: grid;
+  gap: 18px;
+}
+
+.brand-reviews__head h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.7rem, 2.4vw, 2.1rem);
+}
+
+.brand-reviews__head p {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.brand-reviews__head p:last-child {
+  margin-bottom: 0;
+}
+
+.brand-review {
+  border: 1px solid #e4e7ec;
+  border-radius: 14px;
+  padding: 18px 20px;
+  background: #ffffff;
+  display: grid;
+  gap: 10px;
+}
+
+.brand-review h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.brand-review p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.review-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.review-points li {
+  color: #344054;
+  padding-left: 18px;
+  position: relative;
+}
+
+.review-points li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #94a3b8;
+}
+
+.mini-table-wrap {
+  border: 1px solid #e4e7ec;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.mini-table th,
+.mini-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.mini-table th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.mini-table td:first-child {
+  width: 40%;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.mini-table tr:last-child td {
+  border-bottom: none;
+}
+
+.content-block {
+  margin-top: 56px;
+  display: grid;
+  gap: 12px;
+}
+
+.content-block h2 {
+  margin: 0;
+  font-size: clamp(1.7rem, 2.4vw, 2.1rem);
+}
+
+.content-block p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.accordion {
+  display: grid;
+  gap: 10px;
+}
+
+.accordion details {
+  border: 1px solid #e4e7ec;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 12px 14px;
+}
+
+.accordion summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #0f172a;
+  list-style: none;
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion summary::after {
+  content: "+";
+  float: right;
+  color: #98a2b3;
+}
+
+.accordion details[open] summary::after {
+  content: "–";
+}
+
+.accordion details p {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .brand-review {
+    padding: 14px 16px;
+  }
+
+  .mini-table,
+  .mini-table thead,
+  .mini-table tbody,
+  .mini-table th,
+  .mini-table td,
+  .mini-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .mini-table thead {
+    display: none;
+  }
+
+  .mini-table tr {
+    border-bottom: 1px solid #e4e7ec;
+    padding: 8px 10px;
+  }
+
+  .mini-table tr:last-child {
+    border-bottom: none;
+  }
+
+  .mini-table td {
+    border: none;
+    padding: 6px 0;
+  }
+
+  .mini-table td:first-child {
+    width: auto;
+  }
+
+  .mini-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #98a2b3;
+    margin-bottom: 4px;
+  }
+
+}
+
 .alt-payments {
   margin-top: 56px;
   display: grid;
@@ -778,5 +1142,190 @@ body {
   .intro__tag {
     width: 48px;
     height: 2px;
+  }
+
+  .page-pagination {
+    padding: 0 16px;
+    top: -24px;
+    gap: 6px;
+    width: calc(100% - 32px);
+  }
+
+  .page-pagination__btn {
+    padding: 0 10px;
+    min-width: 32px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .article__header h1 {
+    font-size: 2rem;
+  }
+
+  .casino-list h2,
+  .testing-block__head h2,
+  .transfer-flow__head h2,
+  .transfer-table__head h2,
+  .limits-block__head h2,
+  .pros-cons__head h2,
+  .alt-payments__head h2,
+  .responsible-play__head h2 {
+    font-size: 1.5rem;
+  }
+
+  .casino-row {
+    padding: 14px 14px;
+  }
+
+  .casino-row__bonus {
+    padding: 10px 12px;
+  }
+
+  .casino-row__logo {
+    width: 56px;
+    height: 56px;
+  }
+
+  .testing-item,
+  .transfer-step,
+  .limits-item,
+  .alt-payment {
+    padding: 12px 14px;
+  }
+
+  .testing-block__label,
+  .limits-block__label,
+  .transfer-flow__tip,
+  .transfer-table__tip,
+  .limits-block__tip,
+  .pros-cons__tip,
+  .alt-payments__tip,
+  .responsible-play__help {
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .article {
+    margin: 24px 12px;
+    padding: 24px 16px;
+    border-radius: 18px;
+  }
+
+  .intro__wrap {
+    gap: 12px;
+  }
+
+  .casino-row {
+    gap: 12px;
+  }
+
+  .casino-row__rank {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+  }
+
+  .casino-row__score {
+    padding: 8px 10px;
+  }
+
+  .casino-row__score span {
+    font-size: 0.65rem;
+  }
+
+  .casino-row__score strong {
+    font-size: 1rem;
+  }
+
+  .casino-row__bonus {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  .testing-item {
+    grid-template-columns: 12px 1fr;
+    gap: 10px;
+  }
+
+  .testing-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .transfer-step {
+    grid-template-columns: 36px 1fr;
+    gap: 10px;
+  }
+
+  .transfer-step__icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  .comparison-table {
+    min-width: 620px;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 12px 14px;
+    font-size: 0.92rem;
+  }
+
+  .limits-item {
+    grid-template-columns: 24px 1fr;
+    gap: 8px;
+  }
+
+  .limits-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+  }
+
+  .pros-cons__tables {
+    gap: 12px;
+  }
+
+  .pros-cons__table-head {
+    padding: 10px 12px;
+    font-size: 0.78rem;
+  }
+
+  .pros-cons__table ul {
+    padding: 0 12px 6px;
+  }
+
+  .alt-payments__list {
+    gap: 10px;
+  }
+
+  .alt-payment {
+    gap: 6px;
+  }
+
+  .alt-payment__badge {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+  }
+
+  .alt-payment__icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .alt-payment__icon svg {
+    width: 14px;
+    height: 14px;
   }
 }
