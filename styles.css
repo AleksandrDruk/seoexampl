@@ -397,6 +397,20 @@ body {
   margin: 0;
 }
 
+.section-image {
+  margin: 32px 0;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #e4e7ec;
+  background: #ffffff;
+}
+
+.section-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .transfer-flow {
   margin-top: 56px;
   display: grid;
